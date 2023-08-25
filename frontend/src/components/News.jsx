@@ -1,15 +1,23 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
+import { useSpeechSynthesis } from 'react-speech-kit';
 const News = () => {
   const [news,setNews]=useState([]);
-  
+  const { speak,voices,cancel } = useSpeechSynthesis();
   useEffect(()=>{
      fetch("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=f37b8c87e24c4483a0ac5847d180da75")
      .then((data)=>data.json())
      .then((response)=>setNews(response.articles))
   },[])
-            
+  const rate=1;
+  
   console.log(news)
+  useEffect(()=>{
+    cancel()
+      speak({ text: "Here latest update",rate ,voice:voices[5]})  
+      
+  },[news])
+ 
   return (
     <div className='newsContainer'>
        {
@@ -24,10 +32,11 @@ news.map((data)=>(
   
 </card>
 ))
-                   
+                  
        }
+      
        
-       
+     
     </div>
   )
 }
