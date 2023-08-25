@@ -1,24 +1,8 @@
 import React from 'react'
 import { useEffect,useState } from 'react'
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { useSpeechSynthesis } from 'react-speech-kit';
 const News = () => {
   const [news,setNews]=useState([]);
-  const { speak,voices,cancel } = useSpeechSynthesis();
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition
-  } = useSpeechRecognition();
-  const listenContinuously = () => {
   
-     SpeechRecognition.startListening({
-       continuous: true,
-       language: 'en-GB',
-       
-     });
- };
   useEffect(()=>{
      fetch("https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=f37b8c87e24c4483a0ac5847d180da75")
      .then((data)=>data.json())
@@ -40,8 +24,9 @@ news.map((data)=>(
   
 </card>
 ))
-         
+                   
        }
+       
        
     </div>
   )

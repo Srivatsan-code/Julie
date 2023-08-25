@@ -59,7 +59,7 @@ def web_scraping(qs):
                 if bool(para.text.strip()):
                     answer = title + "\n" + para.text
         else:
-            answer="Sorry Data unavailable 😓"
+            answer="Sorry Data unavailable"
         print("Answer :"+answer)
  
         return answer
