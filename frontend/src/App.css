@@ -1,13 +1,16 @@
 .App {
   text-align: center;
-  min-height: 100vh;
+  height: 200vh;
 
  background-color: #000000;
 background-image: linear-gradient(315deg, #2e2e30 0%, #0b000e 74%);
 }
+.newstitle{
+  color: #0011ff;
+}
 .dataContainer{
   width: 100%;
-  height: 470px;
+  height: 500px;
   justify-content: center;
   overflow-y:scroll;
   
@@ -166,8 +169,7 @@ background-image: linear-gradient(315deg, #2e2e30 0%, #0b000e 74%);
 }
 .App-header {
   background-color:hsl(0, 0%, 50%,0) ;
-  
-  min-height: 10vh;
+  height: 8vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -287,16 +289,19 @@ display: flex;
 flex-wrap: wrap;
 }
 .card{
-  width: 264px;
-  height: 380px;
+  width: 260px;
+  height: 375px;
   margin-left: 7%;
   margin: 16px;
   background-image: linear-gradient(to right,rgb(244, 238, 246),rgb(169, 165, 165));
+  border-radius: 10px;
 }
 .card img{
-  width:264px;
+  width:260px;
   height: 185px;
+  border-radius: 10px;
 }
+
 .cardTop{
   display: flex;
   padding: 2px;
@@ -317,6 +322,57 @@ flex-wrap: wrap;
   text-align: left;
   margin:0%;
 }
+.selected{
+  width: 264px;
+  height: 375px;
+  margin-left: 7%;
+  margin: 16px;
+  background-image: linear-gradient(to right,rgb(80, 77, 80),rgb(50, 49, 49));
+  border-radius: 10px;
+  transition: transform 1s;
+  transform: scale(1.1);
+  box-shadow: 10px 10px 45px rgb(148, 237, 237);
+  border: 2px solid rgb(56, 202, 238) ;
+}
+.card:hover{
+  transform: scale(1.1);
+  box-shadow: 10px 10px 45px rgb(178, 243, 243);
+}
+.selected img{
+  width:264px;
+  height: 185px;
+  border-radius: 10px;
+}
+
+
+.selected h4{
+  color: #fbf9f9;
+  text-align: left;
+  margin:0%;
+}
+.cardTop1{
+  display: flex;
+  padding: 2px;
+}
+.cardTop1 h6{
+  width: fit-content;
+  text-align: left;
+  color: #f8f4f4;
+  font-weight: bold;
+}
+.cardTop1 h6:nth-child(2){
+  text-align: right;
+  width: fit-content;
+  margin-left:110px;
+}
+
+
+a{
+  text-decoration: none;
+}
+.toggle{
+  padding-left: 1400px;
+}
 @media screen and (max-width:600px){
   .btn{
     position: absolute;
@@ -335,6 +391,9 @@ flex-wrap: wrap;
     border-radius: 50%;
    
 }
+.toggle{
+  padding-left: 260px;
+}
 .lds-ripple {
   display: inline-block;
   position: absolute;
@@ -345,7 +404,11 @@ flex-wrap: wrap;
 }
 }
 
+
 @media screen and (min-width:600px) and (max-width:1000px) {
+  .toggle{
+    padding-left: 500px;
+  }
   .lds-ripple {
     display: inline-block;
     position: absolute;
