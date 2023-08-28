@@ -8,7 +8,7 @@ function App() {
 	// usestate for setting a javascript
 	// object for storing and using data
 	const [data, setdata] = useState({
-		data: "Ask me",
+		data: "Please wait ....",
 	});
     const [reducerValue,forceUpdate]=useReducer(x=>x+1,0)
 	// Using useEffect for single rendering
