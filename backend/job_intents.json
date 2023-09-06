@@ -63,8 +63,8 @@
               "are you"
           ],
           "responses": [
-              "I am a Virtual Assistant name julie.  "
-              ,"I am julie, a Deep-Learning chatbot"
+              "I am a Virtual Assistant name julie. Created by Srivatsan  "
+              ,"I am julie, a Deep-Learning chatbot created by Srivatsan"
           ]
       },
       
@@ -120,7 +120,8 @@
           "patterns": [
               "made you",
               "designed you",
-              "programmed you"
+              "programmed you",
+              "created you"
           ],
           "responses": [
               "I was made by Srivatsan S."

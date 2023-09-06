@@ -6,9 +6,14 @@ import useSound from 'use-sound';
 import clicksnd from "./sound/blip.mp3"
 import News from './News';
 import { useSpeechSynthesis } from 'react-speech-kit';
+import Weather from './Weather';
+import Video from './Video';
 const Speech1 = ({ forceUpdate, data, setdata }) => {
   const [toggle, setToggle] = useState(true)
   const refdata = useRef(false)
+  const refWeather=useRef(false)
+  const refvideo=useRef(false)
+  const [videoName,setVideoname]=useState("")
   const { speak, voices, cancel } = useSpeechSynthesis();
   const {
     transcript,
@@ -60,16 +65,52 @@ const Speech1 = ({ forceUpdate, data, setdata }) => {
     }
     const timer = setTimeout(() => {
       setBool('true');
-      if (transcript && transcript.includes("news") !== true) {
-        refdata.current = false
+      
+      if (transcript && transcript.includes("weather") !== true && transcript.includes("news") !== true && transcript.includes("play") !== true
+      && transcript.includes("song") !== true && transcript.includes("songs") !== true && transcript.includes("youtube") !== true &&
+      transcript.includes("video") !== true && transcript.includes("videos") !== true
+      ) {
+        refWeather.current = false
+        refdata.current=false
+        refvideo.current=false
         fun()
       }
-      else if (transcript && transcript.includes("news")) {
-        refdata.current = true
+      else if (transcript && transcript.includes("weather")) {
+        refWeather.current = true
+        refdata.current=false
+        console.log("weather"+refWeather.current)
         setdata({
           data: " "
 
         });
+      }
+      else if (transcript && transcript.includes("news")) {
+        refdata.current = true
+        refWeather.current = false
+        setdata({
+          data: " "
+
+        });
+      }
+
+      else if(transcript && 
+        transcript.includes("play") 
+      || transcript.includes("song") || transcript.includes("songs")  || transcript.includes("youtube")  &&
+      transcript.includes("video")  || transcript.includes("videos") 
+        ){
+          refvideo.current?refvideo.current=false:refvideo.current=true
+          refdata.current = false
+          refWeather.current = false
+          refvideo.current=true
+          setdata({
+          data: " "
+        });
+        var txt=transcript
+        txt=txt.replace("play","")
+        txt=txt.replace("youtube","")
+        txt=txt.replace("videos","")
+        txt=txt.replace("video","")
+        setVideoname(txt)
       }
     }, 2500);
 
@@ -110,7 +151,8 @@ const Speech1 = ({ forceUpdate, data, setdata }) => {
           <p className='data'>{data} <br /></p>
 
           {refdata.current ? <News /> : ""}
-
+          {refWeather.current? <Weather/>:""}
+          {refvideo.current? <Video name={videoName}/>:""}
           <p className={(data) ? 'load' : 'load1'}>{
             transcript ? <div class="lds-ellipsis"><div ></div><div></div><div></div><div></div></div> :
               toggle === true ? "Hearing..." : "Please Switch on Mic ..."
