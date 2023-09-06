@@ -4,6 +4,7 @@ import "./App.css";
 import useSound from 'use-sound';
 import startsnd from "./components/sound/start.mp3"
 import Speech1 from "./components/Speech1";
+
 function App() {
 	// usestate for setting a javascript
 	// object for storing and using data
@@ -32,8 +33,7 @@ function App() {
 			<header className="App-header">
 				<h1>Virtual Assistant</h1>
 			</header>
-			<Speech1 forceUpdate={forceUpdate} data={data.data} setdata={setdata}/>
-			
+			<Speech1 forceUpdate={forceUpdate} data={data.data} setdata={setdata}/>  
 		</div>
 	);
 }

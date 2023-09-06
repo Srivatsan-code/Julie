@@ -17,7 +17,9 @@ const News = () => {
      .then((response)=>setNews(response.articles))
   },[])
   news.map((data)=>(
+    data.title?
     arr.push(data.title)
+    :""
   ))
   const rate=1;
   const handleImage=(event)=>{
@@ -33,9 +35,10 @@ const News = () => {
           break;
           }
             console.log(swh.current)
+           
             setc(i)
             cancel()
-            speak({ text: arr[i] ,rate ,voice:voices[5]})
+            speak({ text: "             "+arr[i] ,rate ,voice:voices[5]})
          
             await new Promise(resolve => setTimeout(resolve, 9000));
          
@@ -48,7 +51,7 @@ const News = () => {
 
   useEffect(()=>{
           itr()
-  },[checked])
+  },[news,checked])
   swh.current=checked
   const handleChange=()=>{
     checked?setChecked(false):setChecked(true)
@@ -62,7 +65,7 @@ const News = () => {
       /></div> 
        {
 news.map((data,index)=>(
- 
+ data.title?
   <card className={index===cref.current?"selected":"card"}>
     <a href={data.url} target='_blank'>
    <img src={data.urlToImage===null?defaultNewsImage:data.urlToImage} alt="News Thumbnail" onError={handleImage}/>
@@ -70,12 +73,14 @@ news.map((data,index)=>(
   <h6>{(new Date(data.publishedAt)).toDateString()}</h6>
   <h6>{data.source.name}</h6>
   </div>
-
-  
    <h4 key={index} >{data.title}</h4>
-   
    </a>
 </card>
+ :(()=>{
+  cref.current+=1
+  return null
+ })()
+ 
 
 ))
 
